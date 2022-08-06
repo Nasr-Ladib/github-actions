@@ -3,7 +3,10 @@
 name: Acions Workflow
 
 on: 
-  push:
+  schedule:
+  #see the link for cron expressions https://crontab.guru/
+  - cron: "1 * * * *"
+  #push:
   pull_request:
     types: [closed, assigned, opened]
 
