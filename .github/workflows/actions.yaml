@@ -9,7 +9,7 @@ on:
   # - cron: "1 15 * * *"
   #push:
   repository_dispatch:
-    tyeps: [build]
+    types: [build]
   pull_request:
     types: [closed, assigned, opened]
 
