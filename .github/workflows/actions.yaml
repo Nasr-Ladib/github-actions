@@ -8,6 +8,8 @@ on:
   # - cron: "1 12 * * *"
   # - cron: "1 15 * * *"
   #push:
+  repository_dispatch:
+    tyeps: [build]
   pull_request:
     types: [closed, assigned, opened]
 
