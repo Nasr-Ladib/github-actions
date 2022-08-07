@@ -5,7 +5,8 @@ name: Acions Workflow
 on: 
   schedule:
   #see the link for cron expressions https://crontab.guru/
-  - cron: "1 * * * *"
+  - cron: "1 12 * * *"
+  - cron: "1 15 * * *"
   #push:
   pull_request:
     types: [closed, assigned, opened]
