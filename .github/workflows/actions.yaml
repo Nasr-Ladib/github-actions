@@ -7,11 +7,41 @@ on:
   # #see the link for cron expressions https://crontab.guru/
   # - cron: "1 12 * * *"
   # - cron: "1 15 * * *"
-  #push:
+  push:
+    ### branches-ignore and branches don't work together also for tags, tags-ignore and paths, paths-ignore
+
+    #To run workflow when we push to branches except some branch
+    # branches-ignore:
+    #   - "dev"
+
+    branches:
+      - main
+      # any branch that match with this string Link:https://github.com/Nasr-Ladib/github-actions/runs/7708632047?check_suite_focus=true
+      - 'feature/*' # ✔️ match feature/some_feature | ❌ not match feature/some_string/some_feature
+      - 'feature/**' # ✔️ match feature/some_feature  ✔️ feature/some_string/some_feature
+      # we will execlude this branch to trigger the workflow even it matchs with the pattern and we should put it after the patterns
+      - '!feature/test_feature' 
+    
+    # same as branches and branches-ignore
+    tags:
+      - v1
+    
+    # When some file changed 
+    paths:
+      - '**.js' # Any js file had changed in our repo
+      - '!index.js'  # the workflow will run for all files that changed except this filename
+
+    # paths-ignore:
+    #   - "docs/**" #Any file changed inside docs, we don't want to run workflow
+
+  pull_request:
+    #Will triger if we want to merge with main branch
+    branches:
+      - main
+    types: [closed, assigned, opened]
+  
   repository_dispatch:
     types: [build]
-  pull_request:
-    types: [closed, assigned, opened]
 
 jobs:
   run-github-actions:
